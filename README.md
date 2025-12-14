@@ -41,7 +41,7 @@ public void withdraw(double amount) throws InsufficientFundsException {
     throw new InsufficientFundsException(balance, amount);
   }
   balance -= amount;
-  System.out.printf("Successfully withdrew $%.2f.\n",amount);
+  System.out.printf("Successfully withdrew $%.2f.\n", amount);
 }
 Validates withdrawal amount is positive
 Checks if the account has enough balance (throws InsufficientFundsException if not)
@@ -54,8 +54,6 @@ public void checkBalance() {
 }
 Uses printf to format the balance as currency ($0.00)
 Nested Custom Exception: InsufficientFundsException
-java
-Run
 class InsufficientFundsException extends Exception {
   public InsufficientFundsException(double currentBalance, double withdrawalAmount) {
     super(String.format("Insufficient funds. Current: $%.2f, Attempted: $%.2f", currentBalance, withdrawalAmount));
@@ -65,13 +63,10 @@ Extends Java’s Exception class (checked exception)
 Custom message shows current balance and attempted withdrawal amount
 Nested inside BankAccount (logical grouping—only relevant to banking operations)
 Getter Methods
-java
-Run
 public String getAccountNumber() { return accountNumber; }
 public String getAccountHolder() { return accountHolder; }
 public double getBalance() { return balance; }
 Provide read-only access to private account fields (encapsulation best practice)
-
 2. SimpleBankingApp Class (User Interface/Execution)
 This is the main class that runs the application and handles user interaction.
 main(String[] args) Method (Entry Point)
@@ -87,11 +82,8 @@ public static void main(String[] args) {
     System.out.println("3. Check Balance");
     System.out.println("4. Exit");
     System.out.print("Enter your choice: ");
-
     try {
-      // Parse user input and handle menu choices//
       int choice = Integer.parseInt(scanner.nextLine());
-
       switch (choice) {
         // Case 1: Deposit
         case 1:
@@ -99,7 +91,6 @@ public static void main(String[] args) {
           double depositAmount = Double.parseDouble(scanner.nextLine());
           account.deposit(depositAmount);
           break;
-        
         // Case 2: Withdraw (catches InsufficientFundsException)
         case 2:
           System.out.print("Enter withdrawal amount: $");
@@ -110,18 +101,15 @@ public static void main(String[] args) {
             System.out.println("Error: " + e.getMessage());
           }
           break;
-        
         // Case 3: Check Balance
         case 3:
           account.checkBalance();
           break;
-        
         // Case 4: Exit
         case 4:
           System.out.println("Thank you for banking with us!");
           scanner.close();
           return;
-        
         // Invalid menu choice
         default:
           System.out.println("Invalid choice. Please enter 1-4.");
@@ -187,4 +175,4 @@ Step 5: Exit the App
 Enter 4 and press Enter:
 plaintext
 Thank you for banking with us!
-The app closes cleanly (scanner is closed to prevent resource leaks)
+The app closes cleanly (scanner is closed to prevent resource leaks).
